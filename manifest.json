@@ -1,0 +1,10 @@
+{
+    "manifest_version": 2,
+    "name": "The Perfect New Tab",
+    "description": "Opens up a useful new tab",
+    "version": "0.1.0.0",
+    "permissions" : ["management","storage"],
+    "chrome_url_overrides" : {
+        "newtab": "todo.html"
+    }
+ }

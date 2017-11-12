@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+/* Basic Style */
+body {
+background: #fff;
+color: #333;
+font-family: Georgia, sans-serif;
+}
+
+.pagecontainer {
+display: inline-block;
+width: 100%;
+}
+
+.container {
+display: flex;
+width: 90%;
+margin: 50px auto 0;
+}
+
+.todo {
+display: block;
+width: 48%;
+border-radius: 6px;
+border: 2px solid black;
+padding: 10px;
+}
+
+.feed {
+display: block;
+width: 48%;
+border-radius: 6px;
+border: 2px solid black;
+padding: 10px;
+}
+
+.profile {
+  display:flex;
+}
+
+#ageContent {
+  font-weight: 500;
+  font-size: 25px;
+}
+
+#ageContent span{
+  font-weight: 800;
+  font-size: 30px;
+}
+
+.halfColumnDiv{
+  width:50%;
+}
+
+.profile a {
+  float:right;
+  font-size: 15px;
+  cursor:pointer;
+  font-family: Georgia, sans-serif;
+  text-decoration: underline;
+}
+
+ul {
+margin: 0;
+padding: 0;
+}
+
+li * {
+float: left;
+}
+
+li, h3 {
+clear:both;
+list-style:none;
+}
+
+input, button {
+outline: none;
+}
+
+button {
+background: none;
+border:0px;
+color: #888;
+font-size: 15px;
+width: 60px;
+margin: 10px 0 0;
+font-family: Georgia, sans-serif;
+cursor: pointer;
+}
+
+button:hover {
+color: #333;
+font-weight: 900;
+}
+
+/* Heading */
+h3,label[for='new-task']{
+color: #333;
+font-weight: 600;
+font-size: 14px;
+border-bottom: 2px solid coral;
+padding: 30px 0 10px;
+margin: 0;
+text-transform: uppercase;
+}
+
+label[for='fields'] {
+color: #333;
+font-weight: 500;
+text-decoration: underline;
+font-size: 14px;
+padding: 0px 10px;
+margin: 0;
+}
+
+label[for='headers'] {
+color: coral;
+font-weight: bolder;
+font-size: 18px;
+margin: 0;
+width:100%;
+}
+
+input[type="text"] {
+margin: 0;
+font-size: 15px;
+line-height: 15px;
+height: 15px;
+padding: 10px;
+border: 1px solid #ddd;
+background: #fff;
+border-radius: 6px;
+font-family: Georgia, sans-serif;
+color: #888;
+}
+
+
+input[type="date"] {
+margin: 0;
+font-size: 15px;
+line-height: 15px;
+height: 15px;
+padding: 10px;
+border: 1px solid #ddd;
+background: #fff;
+border-radius: 6px;
+font-family: Georgia, sans-serif;
+color: #888;
+}
+
+input[type="text"]:focus {
+color: #333;
+}
+
+/* New Task */
+label[for='new-task'] {
+display: block;
+margin: 0 0 20px;
+}
+
+input#new-task {
+float: left;
+width: 80%;
+}
+
+p > button:hover {
+color: #0FC57C;
+}
+
+/* Task list */
+#incomplete-tasks li {
+overflow: hidden;
+padding: 20px 0;
+border-bottom: 1px solid #eee;
+}
+
+#incomplete-tasks li > input[type="checkbox"] {
+margin: 0 10px;
+position: relative;
+top: 15px;
+}
+
+#incomplete-tasks li > label {
+font-size: 18px;
+line-height: 40px;
+width: 70%;
+padding: 0 0 0 11px;
+}
+
+#incomplete-tasks li >  input[type="text"] {
+width: 80%;
+}
+
+#incomplete-tasks li > .delete:hover {
+color: #CF2323;
+}
+
+#completed-tasks li {
+overflow: hidden;
+padding: 20px 0;
+border-bottom: 1px solid #eee;
+}
+
+#completed-tasks li > input[type="checkbox"] {
+margin: 0 10px;
+position: relative;
+top: 15px;
+}
+
+#completed-tasks li > label {
+font-size: 18px;
+line-height: 40px;
+width: 70%;
+padding: 0 0 0 11px;
+}
+
+#completed-tasks li >  input[type="text"] {
+width: 80%;
+}
+
+#completed-tasks li > .delete:hover {
+color: #CF2323;
+}
+
+/* Completed */
+#completed-tasks label {
+text-decoration: line-through;
+color: #888;
+}
+
+/* Edit Task */
+ul li input[type=text] {
+display:none;
+}
+
+ul li.editMode input[type=text] {
+display:block;
+}
+
+ul li.editMode label {
+display:none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 80px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #555555;
+    width: 80%;
+}
+
+.close {
+    color: #555555;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+#sourceHolder{
+  column-count: 4;
+  margin-bottom:20px;
+}
+#sourceHolder li{
+  padding: 10px 0;
+}
+#sourceHolder label{
+  cursor: pointer;
+}
+#sortOrderHolder {
+  column-count: 3;
+  width: 30%;
+}
+#sortOrderHolder label{
+  cursor: pointer;
+}
+#saveProfileData {
+  border: 1px solid #888;
+  border-radius: 4px;
+}
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+div.accordionpanel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+div.accordionpanel ul li {
+  font-size: 18px;
+  border-top: 2px solid coral;
+  line-height: 30px;
+}
+
+div.accordionpanel ul li span{
+  font-size: 12px;
+  line-height: 20px;
+}
+
+div.accordionpanel ul li img{
+  height: 140px;
+  width: 170px;
+}
+
+div.accordionpanel ul li div a{
+  color:rgb(58, 138, 204);
+}
+
+div.accordionpanel ul li:first-child {
+  border-top:0px;
+}
+
+</style>
+</head>
+<body>
+  <div class="pagecontainer">
+    <div class="profile">
+        <div id="ageContent" class="halfColumnDiv"></div>
+        <div class="halfColumnDiv"><a id="profileSettings">Profile Settings</a></div>
+    </div>
+    <div id="profileModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="profileClose">&times;</span>
+        <p><label for="headers">Profile Settings</label></p>
+        <hr>
+        <p><label for="fields">Your Birthday</label> <input type="date" id="datepicker" name="bday" /></p>
+        <p><label for="fields">Feed Sources</label>
+          <ul id="sourceHolder">
+          </ul>
+        </p>
+        <br>
+        <button id="saveProfileData">Save</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="todo">
+        <label for="headers">Task Planner</label>
+        <p>
+          <label for="new-task">Add Item</label><input id="new-task" type="text"><button id="addTask">Add</button>
+        </p>
+        <h3>Todo</h3>
+        <ul id="incomplete-tasks">
+        </ul>
+        <h3>Completed</h3>
+        <ul id="completed-tasks">
+        </ul>
+      </div>
+      <div class="feed">
+        <label for="headers">News Feed</label>
+        <br><br>
+        <div style="width:100%" id="feedContent">
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="todo.js"></script>
+</body>
+</html>
